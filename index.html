@@ -196,70 +196,7 @@
         <p>© 2026 StarTech - Todos os direitos reservados</p>
     </footer>
 
-    <script>
-    const header = document.querySelector('header');
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-
-    // Update CSS variable for header space so fixed header doesn't cover content
-    function updateHeaderSpace() {
-        requestAnimationFrame(() => {
-            const isHidden = header.classList.contains('hidden');
-            const h = isHidden ? 0 : header.offsetHeight;
-            document.documentElement.style.setProperty('--header-space', h + 'px');
-        });
-    }
-
-    // Header shrink and hide/show on scroll direction
-    let lastScrollY = window.scrollY || 0;
-    window.addEventListener('scroll', () => {
-        const currentY = window.scrollY || 0;
-        const shouldShrink = currentY > 60;
-        header.classList.toggle('shrink', shouldShrink);
-
-        // Hide on scroll down, show on scroll up
-        if (currentY > lastScrollY && currentY > 120) {
-            // scrolling down
-            header.classList.add('hidden');
-        } else {
-            // scrolling up
-            header.classList.remove('hidden');
-        }
-
-        lastScrollY = currentY;
-        updateHeaderSpace();
-    }, {passive: true});
-
-    // Menu toggle for small screens
-    menuToggle.addEventListener('click', () => {
-        const open = navMenu.classList.toggle('open');
-        menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        updateHeaderSpace();
-    });
-
-    // Close menu when clicking a nav link (good for single-page anchors)
-    navMenu.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') {
-            navMenu.classList.remove('open');
-            menuToggle.setAttribute('aria-expanded', 'false');
-            updateHeaderSpace();
-        }
-    });
-
-    // Close menu on outside click
-    document.addEventListener('click', (e) => {
-        if (!header.contains(e.target)) {
-            navMenu.classList.remove('open');
-            menuToggle.setAttribute('aria-expanded', 'false');
-            updateHeaderSpace();
-        }
-    });
-
-    // Recompute header space on load and resize
-    window.addEventListener('resize', updateHeaderSpace);
-    window.addEventListener('load', updateHeaderSpace);
-    updateHeaderSpace();
-    </script>
+    <script src="header.js" defer></script>
 
     </body>
     </html>
