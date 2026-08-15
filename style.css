@@ -10,8 +10,8 @@ html {
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: radial-gradient(circle at top, #0f172a 0%, #020617 100%);
-    color: #f8fafc;
+    background: linear-gradient(180deg, #007bff 0%, #0a66c2 100%);
+    color: #ffffff;
     line-height: 1.6;
 }
 
@@ -20,8 +20,8 @@ header {
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(5, 23, 55, 0.95);
-    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     transition: background 0.3s ease, padding 0.3s ease;
 }
@@ -31,7 +31,7 @@ header.shrink {
 }
 
 .highlight {
-    color: #60a5fa;
+    color: #FF0000;
 }
 
 .top-bar {
@@ -45,10 +45,54 @@ header.shrink {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #f8fafc;
+    display: inline-block;
     text-decoration: none;
+}
+
+.logo-img {
+    height: auto;
+    max-height: 84px;
+    max-width: 220px;
+    width: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    object-fit: contain;
+}
+
+@media (max-width: 900px) {
+    .logo-img {
+        max-height: 72px;
+        max-width: 180px;
+    }
+}
+
+@media (max-width: 640px) {
+    .logo-img {
+        max-height: 56px;
+        max-width: 140px;
+        margin: 6px 0;
+    }
+    .top-bar {
+        padding: 10px 16px 6px;
+    }
+    .nav-menu a {
+        padding: 10px 8px;
+    }
+}
+
+@media (max-width: 400px) {
+    .logo-img {
+        max-height: 48px;
+        max-width: 120px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .logo-img {
+        max-height: 100px;
+        max-width: 260px;
+    }
 }
 
 .nav-menu {
@@ -90,7 +134,7 @@ header.shrink {
 .hero p {
     max-width: 760px;
     margin: 20px auto 30px;
-    color: #cbd5e1;
+    color: rgba(255,255,255,0.92);
     font-size: 1.05rem;
 }
 
@@ -143,7 +187,7 @@ header.shrink .nav-menu {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: #2563eb;
+    background: #005ce6;
     color: #fff;
     padding: 14px 24px;
     border-radius: 999px;
@@ -159,7 +203,7 @@ header.shrink .nav-menu {
 }
 
 .btn-secondary {
-    background: #f97316;
+    background: #ff6b2d;
 }
 
 .whatsapp-btn {
@@ -191,12 +235,13 @@ header.shrink .nav-menu {
 
 /* CARDS */
 .card {
-    background: rgba(15, 23, 42, 0.95);
+    background: #0000CD;
     padding: 28px;
-    border-radius: 24px;
+    border-radius: 20px;
     margin-top: 18px;
-    border: 1px solid rgba(96, 165, 250, 0.08);
-    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.25);
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 18px 40px rgba(3, 27, 76, 0.12);
+    color: #ffffff;
 }
 
 /* ANIMAÇÃO */
@@ -220,15 +265,16 @@ header.shrink .nav-menu {
 }
 
 .service-grid div {
-    background: rgba(148, 163, 184, 0.08);
-    padding: 22px;
-    border-radius: 18px;
+    background: rgba(0,0,205,0.12);
+    padding: 20px;
+    border-radius: 14px;
+    color: #ffffff;
 }
 
 .service-grid h3,
 .faq-card h3 {
     margin: 0 0 10px;
-    color: #e2e8f0;
+    color: #eaf2ff;
 }
 
 .location-card {
@@ -240,13 +286,13 @@ header.shrink .nav-menu {
 .review-stars,
 .faq-card p,
 .card ul {
-    color: #cbd5e1;
+    color: rgba(255,255,255,0.9);
 }
 
 .review-stars {
     font-size: 1.5rem;
     margin-bottom: 12px;
-    color: #fbbf24;
+    color: #ffd166;
 }
 
 .reviews-card ul {
@@ -281,12 +327,12 @@ header.shrink .nav-menu {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: #22c55e;
+    background: #20c997;
     color: white;
     border-radius: 50%;
     font-size: 24px;
     text-decoration: none;
-    box-shadow: 0 20px 40px rgba(34, 197, 110, 0.3);
+    box-shadow: 0 20px 40px rgba(32, 201, 151, 0.25);
     z-index: 60;
 }
 
@@ -312,7 +358,7 @@ header.shrink .nav-menu {
 }
 
 .instagram {
-    background: linear-gradient(135deg, #feda75, #d62976, #962fbf, #4f5bd5);
+    background: linear-gradient(135deg, #ff7a59, #d62976, #4f5bd5);
 }
 
 .facebook {
@@ -332,8 +378,8 @@ header.shrink .nav-menu {
 .footer {
     text-align: center;
     padding: 40px 24px;
-    background: #020617;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(0,0,0,0.06);
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 @media (max-width: 900px) {
