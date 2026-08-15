@@ -7,7 +7,8 @@
   // update CSS var so content is always below header
   function updateHeaderSpace(){
     window.requestAnimationFrame(()=>{
-      const h = header.offsetHeight;
+      const isHidden = header.classList.contains('hidden');
+      const h = isHidden ? 0 : header.offsetHeight;
       document.documentElement.style.setProperty('--header-space', h + 'px');
     });
   }
@@ -15,14 +16,25 @@
   // initial
   updateHeaderSpace();
 
-  // shrink on scroll
+  // shrink + hide on scroll (hide when scrolling down, show when scrolling up)
+  let lastY = window.scrollY || 0;
   let ticking = false;
   window.addEventListener('scroll', () => {
     if (ticking) return;
     ticking = true;
     window.requestAnimationFrame(()=>{
-      const shouldShrink = window.scrollY > 60;
+      const currentY = window.scrollY || 0;
+      const shouldShrink = currentY > 60;
       header.classList.toggle('shrink', shouldShrink);
+
+      // hide header when scrolling down past threshold; show when scrolling up
+      if (currentY > lastY && currentY > 120) {
+        header.classList.add('hidden');
+      } else if (currentY < lastY) {
+        header.classList.remove('hidden');
+      }
+
+      lastY = currentY;
       updateHeaderSpace();
       ticking = false;
     });
