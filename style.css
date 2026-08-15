@@ -36,6 +36,10 @@ header {
 header.shrink {
     background: rgba(5, 23, 55, 0.98);
     height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    overflow: hidden;
 }
 
 /* Hidden header when scrolling down (completely removed from view)
@@ -60,6 +64,11 @@ header.hidden {
     margin: auto;
     padding: 12px 24px 0;
     position: relative;
+}
+
+/* make sure top-bar has the same background so hero doesn't show through */
+.top-bar {
+    background: transparent;
 }
 
 .logo {
@@ -160,6 +169,22 @@ header.hidden {
     flex-wrap: wrap;
     gap: 14px;
     justify-content: flex-end;
+}
+
+/* When header is shrunk, keep nav and logo in one line and reduce gaps */
+header.shrink .nav-menu {
+    gap: 10px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+header.shrink .top-bar {
+    padding: 0 12px;
+}
+
+/* Prevent hero content overlapping header: ensure header has solid backdrop when shrunk */
+header.shrink {
+    background: linear-gradient(90deg, rgba(5,23,55,0.98), rgba(5,23,55,0.98));
 }
 
 .nav-menu a {
