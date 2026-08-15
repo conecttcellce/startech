@@ -4,7 +4,7 @@
     const navMenu = document.querySelector('.nav-menu');
     if (!header) return;
 
-    // update CSS var so content is always below header
+    // atualiza a variável CSS para que o conteúdo fique sempre abaixo do cabeçalho
     function updateHeaderSpace(){
         window.requestAnimationFrame(()=>{
         const isHidden = header.classList.contains('hidden');
@@ -13,10 +13,10 @@
         });
     }
 
-    // initial
+    // inicial
     updateHeaderSpace();
 
-    // shrink + hide on scroll (hide when scrolling down, show when scrolling up)
+    // encolher ao rolar; restaurar cabeçalho completo apenas quando estiver no topo
     let lastY = window.scrollY || 0;
     let ticking = false;
     window.addEventListener('scroll', () => {
@@ -25,7 +25,7 @@
         window.requestAnimationFrame(()=>{
         const currentY = window.scrollY || 0;
             const shouldShrink = currentY > 60;
-            // shrink header after scrolling a bit; only restore full header when near the top
+            // encolhe o cabeçalho após rolar um pouco; restaura o cabeçalho completo somente quando estiver próximo ao topo
             header.classList.toggle('shrink', shouldShrink);
             if (currentY <= 20) {
                 header.classList.remove('shrink');
@@ -37,7 +37,7 @@
         });
     }, {passive:true});
 
-    // menu toggle
+    // alternador do menu
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', (e)=>{
         const open = navMenu.classList.toggle('open');
@@ -45,7 +45,7 @@
         updateHeaderSpace();
         });
 
-        // close when link clicked
+        // fecha quando um link é clicado
         navMenu.addEventListener('click', (e)=>{
         if (e.target.tagName === 'A'){
             navMenu.classList.remove('open');
@@ -54,7 +54,7 @@
         }
         });
 
-        // close on outside click
+        // fecha ao clicar fora do cabeçalho
         document.addEventListener('click', (e)=>{
         if (!header.contains(e.target)){
             navMenu.classList.remove('open');
