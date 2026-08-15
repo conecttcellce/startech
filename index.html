@@ -197,9 +197,9 @@
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
 
-    // Header shrink on scroll (gentler threshold)
+    // Header shrink on scroll (gentler threshold for both desktop and mobile)
     window.addEventListener('scroll', () => {
-        header.classList.toggle('shrink', window.scrollY > 120);
+        header.classList.toggle('shrink', window.scrollY > 60);
     });
 
     // Menu toggle for small screens
