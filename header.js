@@ -27,10 +27,12 @@
       const shouldShrink = currentY > 60;
       header.classList.toggle('shrink', shouldShrink);
 
-      // hide header when scrolling down past threshold; show when scrolling up
-      if (currentY > lastY && currentY > 120) {
+      // hide header when scrolling down past threshold; only show again when at top
+      const menuOpen = navMenu && navMenu.classList.contains('open');
+      if (!menuOpen && currentY > lastY && currentY > 120) {
         header.classList.add('hidden');
-      } else if (currentY < lastY) {
+      } else if (currentY <= 20) {
+        // only remove hidden when user is essentially at the top of the page
         header.classList.remove('hidden');
       }
 
