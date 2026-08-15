@@ -38,6 +38,13 @@ header.shrink {
     height: 56px;
 }
 
+/* Hidden header when scrolling down (completely removed from view)
+   When hidden, we set --header-space to 0 so the page content moves up. */
+header.hidden {
+    transform: translateY(-100%);
+    pointer-events: none;
+}
+
 .highlight {
     color: #FF0000;
 }
