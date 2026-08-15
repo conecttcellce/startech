@@ -24,17 +24,12 @@
         ticking = true;
         window.requestAnimationFrame(()=>{
         const currentY = window.scrollY || 0;
-        const shouldShrink = currentY > 60;
-        header.classList.toggle('shrink', shouldShrink);
-
-        // hide header when scrolling down past threshold; only show again when at top
-        const menuOpen = navMenu && navMenu.classList.contains('open');
-        if (!menuOpen && currentY > lastY && currentY > 120) {
-            header.classList.add('hidden');
-        } else if (currentY <= 20) {
-            // only remove hidden when user is essentially at the top of the page
-            header.classList.remove('hidden');
-        }
+            const shouldShrink = currentY > 60;
+            // shrink header after scrolling a bit; only restore full header when near the top
+            header.classList.toggle('shrink', shouldShrink);
+            if (currentY <= 20) {
+                header.classList.remove('shrink');
+            }
 
         lastY = currentY;
         updateHeaderSpace();
