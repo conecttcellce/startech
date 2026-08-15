@@ -505,3 +505,50 @@ header.shrink .nav-menu {
         padding: 0 18px 40px;
     }
 }
+
+/* Mobile: keep header compact and make nav fit the initial viewport */
+@media (max-width: 640px) {
+    :root { --header-space: 84px; }
+
+    header {
+        transition: transform 0.2s ease, height 0.2s ease, padding 0.18s ease;
+    }
+
+    .top-bar {
+        padding: 6px 12px 6px;
+    }
+
+    .logo-img {
+        max-height: 44px;
+        max-width: 120px;
+    }
+
+    /* Make the mobile nav compact and grid-based so links wrap neatly */
+    .nav-menu.open {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 8px;
+        right: 8px;
+        background: rgba(0,0,0,0.36);
+        padding: 8px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+        max-height: 40vh;
+        overflow-y: auto;
+        z-index: 120;
+    }
+
+    .nav-menu a {
+        padding: 8px 6px;
+        font-size: 0.95rem;
+        text-align: center;
+    }
+
+    /* Reduce vertical spacing in hero so content appears on initial screen */
+    .hero {
+        padding-top: 18px;
+    }
+}
