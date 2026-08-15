@@ -32,20 +32,10 @@ header {
     transition: background 0.3s ease, padding 0.3s ease, height 0.28s ease;
 }
 
-/* Hidden header when scrolling down */
-header.hidden {
-    transform: translateY(-100%);
-    pointer-events: none;
-}
-
 /* final shrunk header appearance */
 header.shrink {
     background: rgba(5, 23, 55, 0.98);
     height: 56px;
-}
-
-header.shrink {
-    background: rgba(5, 23, 55, 0.98);
 }
 
 .highlight {
