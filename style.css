@@ -29,7 +29,7 @@ header {
     background: rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    transition: background 0.3s ease, padding 0.3s ease, height 0.28s ease;
+    transition: background 0.3s ease, padding 0.3s ease, height 0.28s ease, transform 0.28s ease, opacity 0.28s ease;
 }
 
 /* final shrunk header appearance */
@@ -40,12 +40,10 @@ header.shrink {
 
 /* Hidden header when scrolling down (completely removed from view)
    When hidden, we set --header-space to 0 so the page content moves up. */
+/* hide smoothly using transform + opacity (keep out of flow via --header-space) */
 header.hidden {
-    transform: translateY(-100%);
+    transform: translateY(-110%);
     pointer-events: none;
-    height: 0 !important;
-    overflow: hidden;
-    visibility: hidden;
     opacity: 0;
 }
 
@@ -516,6 +514,9 @@ header.shrink .nav-menu {
 
     .top-bar {
         padding: 6px 12px 6px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
     }
 
     .logo-img {
@@ -523,28 +524,27 @@ header.shrink .nav-menu {
         max-width: 120px;
     }
 
-    /* Make the mobile nav compact and grid-based so links wrap neatly */
-    .nav-menu.open {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 6px;
-        position: absolute;
-        top: calc(100% + 6px);
-        left: 8px;
-        right: 8px;
-        background: rgba(0,0,0,0.36);
-        padding: 8px;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.28);
-        max-height: 40vh;
-        overflow-y: auto;
-        z-index: 120;
+
+    /* Hide the hamburger and show full nav inline (horizontal) */
+    .menu-toggle { display: none !important; }
+
+    .nav-menu {
+        display: flex !important;
+        position: relative;
+        background: transparent;
+        padding: 0 6px;
+        gap: 12px;
+        flex-wrap: nowrap;
+        align-items: center;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .nav-menu a {
-        padding: 8px 6px;
+        padding: 6px 8px;
         font-size: 0.95rem;
-        text-align: center;
+        white-space: nowrap;
+        flex: 0 0 auto;
     }
 
     /* Reduce vertical spacing in hero so content appears on initial screen */
