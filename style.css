@@ -4,7 +4,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 120px;
+    scroll-padding-top: 80px;
 }
 
 body {
@@ -59,6 +59,7 @@ header.shrink {
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.25);
     object-fit: contain;
+    transition: max-height 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
 }
 
 /* Menu toggle button */
@@ -189,6 +190,29 @@ header.shrink .hero {
 
 header.shrink .top-bar {
     padding: 12px 24px 10px;
+}
+
+/* When header is shrunk (desktop and mobile) make it minimal height (logo height) */
+header.shrink {
+    padding: 0;
+}
+
+header.shrink .top-bar {
+    padding: 6px 16px;
+}
+
+header.shrink .logo-img {
+    max-height: 48px;
+}
+
+header.shrink .nav-menu a {
+    padding: 6px 8px;
+    font-size: 0.95rem;
+}
+
+/* Ensure header transitions are smooth */
+header, .top-bar, .nav-menu a {
+    transition: padding 0.25s ease, background 0.25s ease, font-size 0.2s ease;
 }
 
 header.shrink .nav-menu {
