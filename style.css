@@ -4,7 +4,10 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+}
+
+:root {
+    --header-space: 120px;
 }
 
 body {
@@ -13,17 +16,32 @@ body {
     background: linear-gradient(180deg, #007bff 0%, #0a66c2 100%);
     color: #ffffff;
     line-height: 1.6;
+    padding-top: var(--header-space);
 }
 
 /* HEADER */
 header {
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 50;
+    left: 0;
+    right: 0;
+    z-index: 100;
     background: rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    transition: background 0.3s ease, padding 0.3s ease;
+    transition: background 0.3s ease, padding 0.3s ease, height 0.28s ease;
+}
+
+/* Hidden header when scrolling down */
+header.hidden {
+    transform: translateY(-100%);
+    pointer-events: none;
+}
+
+/* final shrunk header appearance */
+header.shrink {
+    background: rgba(5, 23, 55, 0.98);
+    height: 56px;
 }
 
 header.shrink {
@@ -77,6 +95,11 @@ header.shrink {
 
 .menu-toggle:focus {
     outline: 2px solid rgba(255,255,255,0.16);
+}
+
+.menu-icon {
+    display: block;
+    color: #ffffff;
 }
 
 @media (max-width: 900px) {
@@ -178,7 +201,7 @@ header.shrink {
 
 .section {
     padding: 50px 0 0;
-    scroll-margin-top: 180px;
+    scroll-margin-top: calc(var(--header-space) + 12px);
 }
 
 /* Avoid collapsing the hero on shrink to prevent layout jump. Keep visible but reduce vertical spacing. */
@@ -202,7 +225,7 @@ header.shrink .top-bar {
 }
 
 header.shrink .logo-img {
-    max-height: 48px;
+    max-height: 40px;
 }
 
 header.shrink .nav-menu a {
