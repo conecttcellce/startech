@@ -19,32 +19,35 @@ body {
     padding-top: var(--header-space);
 }
 
-/* HEADER */
+/* CABEÇALHO */
 header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 100;
+    z-index: 110;
     background: rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    transition: background 0.3s ease, padding 0.3s ease, height 0.28s ease, transform 0.28s ease, opacity 0.28s ease;
+    transition: background 0.25s ease, padding 0.22s ease, height 0.22s ease, transform 0.22s ease, opacity 0.22s ease;
+    will-change: transform, height, opacity;
 }
 
-/* final shrunk header appearance */
+/* aparência final do cabeçalho encolhido */
+/* Cabeçalho encolhido: barra de linha única com logo + navegação */
 header.shrink {
     background: rgba(5, 23, 55, 0.98);
-    height: 56px;
+    height: 48px;
     display: flex;
     align-items: center;
-    padding: 6px 12px;
+    padding: 0 12px;
     overflow: hidden;
+    box-shadow: 0 4px 18px rgba(3, 27, 76, 0.12);
 }
 
-/* Hidden header when scrolling down (completely removed from view)
-   When hidden, we set --header-space to 0 so the page content moves up. */
-/* hide smoothly using transform + opacity (keep out of flow via --header-space) */
+/* Cabeçalho oculto ao rolar para baixo (removido completamente da visualização)
+    Quando oculto, definimos --header-space para 0 para que o conteúdo suba. */
+/* ocultar suavemente usando transform + opacity (manter fora do fluxo via --header-space) */
 header.hidden {
     transform: translateY(-110%);
     pointer-events: none;
@@ -66,10 +69,8 @@ header.hidden {
     position: relative;
 }
 
-/* make sure top-bar has the same background so hero doesn't show through */
-.top-bar {
-    background: transparent;
-}
+/* garantir que a top-bar tenha o mesmo fundo para evitar que o hero apareça por baixo */
+.top-bar { background: transparent; }
 
 .logo {
     display: inline-block;
@@ -88,7 +89,7 @@ header.hidden {
     transition: max-height 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
 }
 
-/* Menu toggle button */
+/* Botão do menu (hamburger) */
 .menu-toggle {
     display: none;
     background: transparent;
@@ -171,21 +172,29 @@ header.hidden {
     justify-content: flex-end;
 }
 
-/* When header is shrunk, keep nav and logo in one line and reduce gaps */
+/* Quando o cabeçalho estiver encolhido, mantenha a nav e o logo em uma linha e reduza espaçamentos */
 header.shrink .nav-menu {
     gap: 10px;
     justify-content: flex-end;
     align-items: center;
+    flex-wrap: nowrap;
+    overflow: hidden;
 }
 
 header.shrink .top-bar {
     padding: 0 12px;
+    height: 48px;
+    align-items: center;
 }
 
-/* Prevent hero content overlapping header: ensure header has solid backdrop when shrunk */
-header.shrink {
-    background: linear-gradient(90deg, rgba(5,23,55,0.98), rgba(5,23,55,0.98));
-}
+/* Evitar sobreposição do conteúdo do hero com o cabeçalho: garantir fundo sólido ao encolher */
+header.shrink { background: rgba(5,23,55,0.98); }
+
+/* Garantir que o logo fique visível e alinhado no estado encolhido */
+header.shrink .logo-img { max-height: 36px; }
+
+/* Links da nav inline e compactos no cabeçalho encolhido */
+header.shrink .nav-menu a { padding: 6px 8px; font-size: 0.95rem; }
 
 .nav-menu a {
     color: #cbd5e1;
@@ -228,7 +237,7 @@ header.shrink {
     scroll-margin-top: calc(var(--header-space) + 12px);
 }
 
-/* Avoid collapsing the hero on shrink to prevent layout jump. Keep visible but reduce vertical spacing. */
+/* Evitar colapso do hero ao encolher para prevenir salto de layout. Mantê-lo visível reduzindo espaçamento vertical. */
 header.shrink .hero {
     padding-top: 8px;
     padding-bottom: 12px;
@@ -239,7 +248,7 @@ header.shrink .top-bar {
     padding: 12px 24px 10px;
 }
 
-/* When header is shrunk (desktop and mobile) make it minimal height (logo height) */
+/* Quando o cabeçalho estiver encolhido (desktop e mobile), mantenha altura mínima (altura do logo) */
 header.shrink {
     padding: 0;
 }
@@ -257,7 +266,7 @@ header.shrink .nav-menu a {
     font-size: 0.95rem;
 }
 
-/* Ensure header transitions are smooth */
+/* Garantir transições suaves do cabeçalho */
 header, .top-bar, .nav-menu a {
     transition: padding 0.25s ease, background 0.25s ease, font-size 0.2s ease;
 }
@@ -423,7 +432,7 @@ header.shrink .nav-menu {
     border: none;
 }
 
-/* WHATSAPP FLOAT */
+/* BOTÃO FLUTUANTE DO WHATSAPP */
 .whatsapp-float {
     position: fixed;
     bottom: 24px;
@@ -442,7 +451,7 @@ header.shrink .nav-menu {
     z-index: 60;
 }
 
-/* SOCIAL */
+/* REDES SOCIAIS */
 .social {
     display: flex;
     justify-content: center;
@@ -480,7 +489,7 @@ header.shrink .nav-menu {
     text-decoration: underline;
 }
 
-/* FOOTER */
+/* RODAPÉ */
 .footer {
     text-align: center;
     padding: 40px 24px;
@@ -529,7 +538,7 @@ header.shrink .nav-menu {
     }
 }
 
-/* Mobile: keep header compact and make nav fit the initial viewport */
+/* Mobile: manter cabeçalho compacto e ajustar nav ao viewport inicial */
 @media (max-width: 640px) {
     :root { --header-space: 84px; }
 
@@ -550,7 +559,7 @@ header.shrink .nav-menu {
     }
 
 
-    /* Hide the hamburger and show full nav inline (horizontal) */
+    /* Ocultar o hamburger e mostrar a nav completa em linha (horizontal) */
     .menu-toggle { display: none !important; }
 
     .nav-menu {
